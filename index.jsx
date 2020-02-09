@@ -14,7 +14,7 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 const sagaMiddleware = createSagaMiddleware();
-const storage = sessionStorage.getItem('order-board');
+const storage = localStorage.getItem('order-board');
 const store = storage ? 
     createStore(reducer, JSON.parse(storage), applyMiddleware(sagaMiddleware)) :
     createStore(reducer, applyMiddleware(sagaMiddleware));

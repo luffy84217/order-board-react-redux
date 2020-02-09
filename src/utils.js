@@ -40,9 +40,9 @@ export function uuid() {
 
 export function save(namespace, data) {
     if (data) {
-        return sessionStorage.setItem(namespace, JSON.stringify(data));
+        return localStorage.setItem(namespace, JSON.stringify(data));
     }
 
-    const store = sessionStorage.getItem(namespace);
+    const store = localStorage.getItem(namespace);
     return (store && JSON.parse(store)) || [];
 }
