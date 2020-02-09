@@ -7,7 +7,7 @@ const ManifestPlugin = require('webpack-manifest-plugin');
 
 module.exports = {
     entry: {
-        vendor: [ 'babel-polyfill', 'react', 'react-dom', 'redux', 'react-redux', 'prop-types', 'react-intl'],
+        vendor: [ 'babel-polyfill', 'react', 'react-dom', 'redux', 'react-redux', 'prop-types' ],
         main: './index'
     },
     resolve: {
