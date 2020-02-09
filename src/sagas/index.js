@@ -4,9 +4,9 @@ import ACTION_TYPE from '../constants/actionType';
 
 function* fetchOrders() {
     try {
-        const orders = yield call(fetch, API_PATH.ORDERS.GET);
+        const response = yield call(fetch, API_PATH.ORDERS.GET);
 
-        yield put({ type: ACTION_TYPE.FETCH.ORDERS_RECEIVED, orders });
+        yield put({ type: ACTION_TYPE.FETCH.ORDERS_RECEIVED, response });
     }
     catch(error) {
         yield put({ type: ACTION_TYPE.FETCH.ORDERS_REQUEST_FAILED, error });
