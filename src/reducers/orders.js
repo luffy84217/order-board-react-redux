@@ -52,8 +52,6 @@ const orders = (state = [], action) => {
                 }
                 return t;
             });
-        case ACTION_TYPE.FETCH.ORDERS_RECEIVED:
-            return action.orders;
         default:
             return state;
     }
