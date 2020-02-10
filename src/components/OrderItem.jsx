@@ -1,50 +1,57 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const OrderItem = props => {
+const OrderItem = ({
+    order,
+    toggle,
+    edit,
+    editing,
+    blur,
+    destroy
+}) => {
     return (
-        <li className={props.order.completed ? "completed" : ""}>
+        <li className={order.completed ? "completed" : ""}>
             <div className="view">
                 <input className="toggle"
                         type="checkbox"
-                        checked={props.order.completed ? true : false}
-                        onClick={props.toggle.bind(null, props.order.id)}
+                        checked={order.completed ? true : false}
+                        onClick={toggle.bind(null, order.id)}
                 />
-                <label onDoubleClick={props.edit}>{props.order.name}</label>
-                <button className="destroy" onClick={props.destroy.bind(null, props.order.id)} />
+                <label onDoubleClick={edit}>{order.name}</label>
+                <button className="destroy" onClick={destroy.bind(null, order.id)} />
             </div>
             <input
                 className="edit"
-                onKeyDown={props.editing.bind(this, props.order.id, 'name')}
-                onBlur={props.blur}
+                onKeyDown={editing.bind(this, order.id, 'name')}
+                onBlur={blur}
             />
             <div className="view">
                 <input className="toggle"
                         type="checkbox"
-                        checked={props.order.completed ? true : false}
-                        onClick={props.toggle.bind(null, props.order.id)}
+                        checked={order.completed ? true : false}
+                        onClick={toggle.bind(null, order.id)}
                 />
-                <label onDoubleClick={props.edit}>{props.order.price}</label>
-                <button className="destroy" onClick={props.destroy.bind(null, props.order.id)} />
+                <label onDoubleClick={edit}>{order.price}</label>
+                <button className="destroy" onClick={destroy.bind(null, order.id)} />
             </div>
             <input
                 className="edit"
-                onKeyDown={props.editing.bind(this, props.order.id, 'price')}
-                onBlur={props.blur}
+                onKeyDown={editing.bind(this, order.id, 'price')}
+                onBlur={blur}
             />
             <div className="view">
                 <input className="toggle"
                         type="checkbox"
-                        checked={props.order.completed ? true : false}
-                        onClick={props.toggle.bind(null, props.order.id)}
+                        checked={order.completed ? true : false}
+                        onClick={toggle.bind(null, order.id)}
                 />
-                <label onDoubleClick={props.edit}>{props.order.desc}</label>
-                <button className="destroy" onClick={props.destroy.bind(null, props.order.id)} />
+                <label onDoubleClick={edit}>{order.desc}</label>
+                <button className="destroy" onClick={destroy.bind(null, order.id)} />
             </div>
             <input
                 className="edit"
-                onKeyDown={props.editing.bind(this, props.order.id, 'desc')}
-                onBlur={props.blur}
+                onKeyDown={editing.bind(this, order.id, 'desc')}
+                onBlur={blur}
             />
         </li>
     );

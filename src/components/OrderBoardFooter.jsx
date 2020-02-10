@@ -3,31 +3,38 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import intl from '../i18n/index';
 
-const OrderBoardFooter = props => {
-    const clearCompletedBtn = props.completedCount ?
-        <button className="clear-completed" onClick={props.clearCompleted}>
-            {intl[props.lang].clearCompleted}
+const OrderBoardFooter = ({
+    showStatus,
+    orderCount,
+    completedCount,
+    lang,
+    clearCompleted,
+    setShowStatus
+}) => {
+    const clearCompletedBtn = completedCount ?
+        <button className="clear-completed" onClick={clearCompleted}>
+            {intl[lang].clearCompleted}
         </button> : null;
     
     return (
         <footer className="footer">
-            <span className="order-count">{props.orderCount} {intl[props.lang].left}</span>
+            <span className="order-count">{orderCount} {intl[lang].left}</span>
             <ul className="filters">
                 <li>
                     <a href="#/"
-                        className={props.showStatus === FILTER_TYPE.SHOW_ALL ? "selected" : ""}
-                        onClick={props.setShowStatus.bind(null, FILTER_TYPE.SHOW_ALL)}
-                    >{intl[props.lang].all}</a>
+                        className={showStatus === FILTER_TYPE.SHOW_ALL ? "selected" : ""}
+                        onClick={setShowStatus.bind(null, FILTER_TYPE.SHOW_ALL)}
+                    >{intl[lang].all}</a>
                 </li><li>
                     <a href="#/active"
-                        className={props.showStatus === FILTER_TYPE.SHOW_ACTIVE ? "selected" : ""}
-                        onClick={props.setShowStatus.bind(null, FILTER_TYPE.SHOW_ACTIVE)}
-                    >{intl[props.lang].active}</a>
+                        className={showStatus === FILTER_TYPE.SHOW_ACTIVE ? "selected" : ""}
+                        onClick={setShowStatus.bind(null, FILTER_TYPE.SHOW_ACTIVE)}
+                    >{intl[lang].active}</a>
                 </li><li>
                     <a href="#/completed"
-                        className={props.showStatus === FILTER_TYPE.SHOW_COMPLETED ? "selected" : ""}
-                        onClick={props.setShowStatus.bind(null, FILTER_TYPE.SHOW_COMPLETED)}
-                    >{intl[props.lang].completed}</a>
+                        className={showStatus === FILTER_TYPE.SHOW_COMPLETED ? "selected" : ""}
+                        onClick={setShowStatus.bind(null, FILTER_TYPE.SHOW_COMPLETED)}
+                    >{intl[lang].completed}</a>
                 </li>
             </ul>
             {clearCompletedBtn}
