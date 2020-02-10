@@ -6,6 +6,7 @@ import createSagaMiddleware from 'redux-saga';
 import { $, getElement, save } from './src/utils';
 import OrderBoardApp from './src/container/OrderBoardApp';
 import reducer from './src/reducers/index';
+import logger from './src/middlewares/logger';
 import fetchOrders from './src/sagas/index';
 import './src/style.css';
 
@@ -16,24 +17,28 @@ if (process.env.NODE_ENV !== 'production') {
 const sagaMiddleware = createSagaMiddleware();
 const storage = localStorage.getItem('order-board');
 const store = storage ? 
-    createStore(reducer, JSON.parse(storage), applyMiddleware(sagaMiddleware)) :
-    createStore(reducer, applyMiddleware(sagaMiddleware));
+    createStore(reducer, JSON.parse(storage), applyMiddleware(
+        sagaMiddleware,
+        logger
+    )) :
+    createStore(reducer, applyMiddleware(
+        sagaMiddleware,
+        logger
+    ));
 
 sagaMiddleware.run(fetchOrders);
 
-getElement('div', 'root')
-    .then(element => {
-        $('div.order-board').appendChild(element);
+getElement('div', 'root').then(element => {
+    $('div.order-board').appendChild(element);
 
-        ReactDOM.render(
-            <Provider store={store}>
-                <OrderBoardApp />
-            </Provider>,
-            $('#root')
-        );
+    ReactDOM.render(
+        <Provider store={store}>
+            <OrderBoardApp />
+        </Provider>,
+        $('#root')
+    );
 
-        const unsubscribe = store.subscribe(() => {
-            save('order-board', store.getState());
-            console.log(store.getState());
-        });
+    const unsubscribe = store.subscribe(() => {
+        save('order-board', store.getState());
     });
+});
