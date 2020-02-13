@@ -86,6 +86,7 @@ const mapDispatchToProps = dispatch => {
 
             if (event.keyCode === KEY_ENTER && val) {
                 if (type === 'price' && Number.isNaN(+val)) {
+                    alert('Please type number value instead of characters.');
                     return;
                 } 
                 dispatch(edit(id, type, event.target.value));
