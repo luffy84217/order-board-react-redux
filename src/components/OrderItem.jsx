@@ -11,12 +11,12 @@ const OrderItem = ({
 }) => {
     return (
         <li className={order.completed ? "completed" : ""}>
+            <input className="toggle"
+                    type="checkbox"
+                    checked={order.completed ? true : false}
+                    onClick={toggle.bind(null, order.id)}
+            />
             <div className="view">
-                <input className="toggle"
-                        type="checkbox"
-                        checked={order.completed ? true : false}
-                        onClick={toggle.bind(null, order.id)}
-                />
                 <label onDoubleClick={edit}>{order.name}</label>
                 <button className="destroy" onClick={destroy.bind(null, order.id)} />
             </div>
@@ -26,11 +26,6 @@ const OrderItem = ({
                 onBlur={blur}
             />
             <div className="view">
-                <input className="toggle"
-                        type="checkbox"
-                        checked={order.completed ? true : false}
-                        onClick={toggle.bind(null, order.id)}
-                />
                 <label onDoubleClick={edit}>{order.price}</label>
                 <button className="destroy" onClick={destroy.bind(null, order.id)} />
             </div>
@@ -40,11 +35,6 @@ const OrderItem = ({
                 onBlur={blur}
             />
             <div className="view">
-                <input className="toggle"
-                        type="checkbox"
-                        checked={order.completed ? true : false}
-                        onClick={toggle.bind(null, order.id)}
-                />
                 <label onDoubleClick={edit}>{order.desc}</label>
                 <button className="destroy" onClick={destroy.bind(null, order.id)} />
             </div>
